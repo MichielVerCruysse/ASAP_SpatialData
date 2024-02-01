@@ -33,7 +33,7 @@ def segment_periportal_zones(ecadh_channel:da.array, structuring_element:np.arra
     raw_periportal_zone_segments = ecadh_channel > threshing_value
 
     # Clean up periportal zones
-    raw_portal_zones = remove_small_objects_dask(raw_periportal_zone_segments min_size=small_portal_size_threshold) 
+    raw_portal_zones = remove_small_objects_dask(raw_periportal_zone_segments, min_size=small_portal_size_threshold) 
     opened_periportal_zone_segments = binary_closing(da.asarray(raw_portal_zones), structure=structuring_element) 
     periportal_zone_segments = remove_small_objects_dask(opened_periportal_zone_segments, min_size=big_portal_size_threshold)
 
